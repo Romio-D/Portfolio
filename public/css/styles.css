@@ -1,0 +1,32 @@
+body {
+    background-color: #F1F5F9;
+}
+
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 70vh;
+}
+
+.header {
+    background-color: #FFFFFF;
+    height: 10vh;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    padding: 0 15%;
+}
+
+.header-container .name-logo {
+    align-self: flex-start;
+}
+
+.footer {
+    background-color: #111827;
+    height: 20vh;
+}
