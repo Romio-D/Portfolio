@@ -1,22 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portfolio Header</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&family=Roboto:wght@300;400&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
   <header class="header">
     <div class="header-container">
       <a href="/" class="header-logo">Romio Dhar</a>
       <nav class="header-nav">
-        <a href="/" class="nav-btn active">Home</a>
-        <a href="/about" class="nav-btn">About Me</a>
-        <a href="/projects" class="nav-btn">My Work</a>
-        <a href="/contact" class="cta-btn">Contact Me</a>
+        <ul class="nav-links">
+          <li><a href="/" class="nav-link">Home</a></li>
+          <li><a href="/about" class="nav-link">About Me</a></li>
+          <li><a href="/work" class="nav-link">Work</a></li>
+          <li><a href="/contact" class="nav-link">Contact</a></li>
+        </ul>
+        <a href="/contact" class="cta-contact">Contact Me</a>
       </nav>
+      <div class="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="mobile-menu">
+        <div class="mobile-menu-header">
+          <a href="/" class="header-logo mobile-logo">Romio Dhar</a>
+          <i class="fas fa-times mobile-menu-close"></i>
+        </div>
+        <ul class="mobile-nav-links">
+          <li><a href="/" class="mobile-nav-link">Home</a></li>
+          <li><a href="/about" class="mobile-nav-link">About Me</a></li>
+          <li><a href="/work" class="mobile-nav-link">Work</a></li>
+          <li><a href="/contact" class="mobile-nav-link">Contact</a></li>
+          <li><a href="/contact" class="mobile-nav-link cta-mobile-contact">Contact Me</a></li>
+        </ul>
+      </div>
     </div>
   </header>
