@@ -25,10 +25,10 @@ async function loadProjects() {
 }
 loadProjects();
 
-app.get("/", (req, res) => res.render("index.ejs"));
-app.get("/about", (req, res) => res.render("about.ejs"));
-app.get("/projects", (req, res) => res.render("projects.ejs", { projects }));
-app.get("/contact", (req, res) => res.render("contacts.ejs", { msgSent: false }));
+app.get("/", (req, res) => res.render("index.ejs", { pageTitle: "Home Page", metaDescription: "" }));
+app.get("/about", (req, res) => res.render("about.ejs", { pageTitle: "About Romio Dhar - Full-Stack Developer", metaDescription: "Learn more about Romio Dhar, a Full-Stack Developer specializing in scalable web solutions with HTML, CSS, JavaScript, Express.js, and Node.js." }));
+app.get("/projects", (req, res) => res.render("projects.ejs", { projects, pageTitle: "My Work", metaDescription: "" }));
+app.get("/contact", (req, res) => res.render("contacts.ejs", { msgSent: false, pageTitle: "Contact Me", metaDescription: "" }));
 
 app.post("/contact", async (req, res) => {
     const { name, email, message } = req.body;

@@ -723,3 +723,140 @@
     justify-content: center;
   }
 }
+
+/* Projects Section */
+.projects {
+  background-color: #E5E7EB;
+  min-height: 70vh;
+  border-top: 1px solid #D1D5DB;
+  padding: 60px 0;
+}
+
+.projects-container {
+  width: 70vw;
+  margin: 0 15%;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in 0.2s forwards;
+}
+
+.projects-headline {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 40px;
+  color: #1E3A8A;
+  text-align: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.projects-headline::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #1E3A8A;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.project-card {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.project-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: #111827;
+  margin: 15px 20px 10px;
+}
+
+.project-description {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #111827;
+  margin: 0 20px 15px;
+}
+
+.project-link {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: 2px solid #F59E0B;
+  color: #F59E0B;
+  background-color: transparent;
+  border-radius: 30px;
+  text-decoration: none;
+  display: block;
+  width: fit-content;
+  margin: 0 20px 20px;
+  transition: all 0.3s ease;
+}
+
+.project-link:hover {
+  background-color: #F59E0B;
+  color: #111827;
+  transform: scale(1.05);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .projects-container {
+    width: 90vw;
+    margin: 0 5%;
+  }
+
+  .projects-headline {
+    font-size: 32px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-image {
+    height: 180px;
+  }
+
+  .project-title {
+    font-size: 18px;
+  }
+
+  .project-description {
+    font-size: 14px;
+  }
+
+  .project-link {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
