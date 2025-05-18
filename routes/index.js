@@ -3,9 +3,22 @@ import { promises as fs } from "fs";
 import { join } from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import nodemailer from "nodemailer";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const router = express.Router();
+
+// Set up Nodemailer transporter
+const transporter = nodemailer.createTransport({
+  service: "Gmail",
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.EMAIL_PASSWORD,
+  },
+});
 
 export default function createRouter(projects) {
   router.get("/", (req, res) => {
@@ -57,20 +70,21 @@ export default function createRouter(projects) {
     }
 
     try {
-      let messages = [];
-      try {
-        const data = await fs.readFile(join(__dirname, "../messages.json"));
-        messages = JSON.parse(data);
-      } catch (err) {
-        console.warn("messages.json not found, creating new file");
-      }
-
-      messages.push({ name, email, message, date: new Date() });
-
-      await fs.writeFile(
-        join(__dirname, "../messages.json"),
-        JSON.stringify(messages, null, 2)
-      );
+      // Send email using Nodemailer
+      await transporter.sendMail({
+        from: `"Portfolio Contact Form" <${process.env.EMAIL}>`,
+        to: process.env.EMAIL,
+        replyTo: email,
+        subject: `New Contact Form Submission from ${name}`,
+        text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}\nDate: ${new Date().toISOString()}`,
+        html: `
+          <h2>New Contact Form Submission</h2>
+          <p><strong>Name:</strong> ${name}</p>
+          <p><strong>Email:</strong> ${email}</p>
+          <p><strong>Message:</strong> ${message}</p>
+          <p><strong>Date:</strong> ${new Date().toISOString()}</p>
+        `,
+      });
 
       res.render("contact.ejs", {
         msgSent: true,
@@ -92,4 +106,5 @@ export default function createRouter(projects) {
   });
 
   return router;
+  
 }

@@ -3,7 +3,10 @@ import { dirname, join } from "path";
 import { fileURLToPath } from "url";
 import { promises as fs } from "fs";
 import helmet from "helmet";
+import dotenv from "dotenv";
 import createRouter from "./routes/index.js";
+
+dotenv.config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
