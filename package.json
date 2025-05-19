@@ -13,10 +13,14 @@
   "description": "A portfolio site",
   "dependencies": {
     "body-parser": "^2.2.0",
+    "compression": "^1.8.0",
+    "cookie-parser": "^1.4.7",
+    "csrf-csrf": "^4.0.2",
     "dotenv": "^16.5.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "helmet": "^8.1.0",
+    "morgan": "^1.10.0",
     "nodemailer": "^7.0.3"
   }
 }

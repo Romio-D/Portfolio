@@ -4,16 +4,15 @@ import { join } from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import nodemailer from "nodemailer";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const router = express.Router();
 
 // Set up Nodemailer transporter
 const transporter = nodemailer.createTransport({
-  service: "Gmail",
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // Use TLS (false for port 587, true for port 465)
   auth: {
     user: process.env.EMAIL,
     pass: process.env.EMAIL_PASSWORD,
@@ -53,6 +52,7 @@ export default function createRouter(projects) {
       pageTitle: "Contact Romio Dhar",
       metaDescription: "Get in touch with Romio Dhar to discuss your web development project and bring your ideas to life.",
       currentPath: req.path,
+      csrfToken: req.csrfToken(), // Pass CSRF token to the template
     });
   });
 
@@ -66,6 +66,7 @@ export default function createRouter(projects) {
         pageTitle: "Contact Romio Dhar",
         metaDescription: "Get in touch with Romio Dhar to discuss your web development project and bring your ideas to life.",
         currentPath: req.path,
+        csrfToken: req.csrfToken(), // Pass CSRF token on error
       });
     }
 
@@ -92,19 +93,20 @@ export default function createRouter(projects) {
         pageTitle: "Contact Romio Dhar",
         metaDescription: "Get in touch with Romio Dhar to discuss your web development project and bring your ideas to life.",
         currentPath: req.path,
+        csrfToken: req.csrfToken(), // Pass CSRF token on success
       });
     } catch (err) {
-      console.error("Error saving message", err);
+      console.error("Error sending email:", err);
       res.status(500).render("contact.ejs", {
         msgSent: false,
-        error: "Server error",
+        error: "Failed to send message. Please try again later.",
         pageTitle: "Contact Romio Dhar",
         metaDescription: "Get in touch with Romio Dhar to discuss your web development project and bring your ideas to life.",
         currentPath: req.path,
+        csrfToken: req.csrfToken(), // Pass CSRF token on error
       });
     }
   });
 
   return router;
-  
 }
